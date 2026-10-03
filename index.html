@@ -7,18 +7,18 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="description" content="แบบจำลองเชิงโต้ตอบสำหรับศึกษาความถี่ธรรมชาติ คลื่นนิ่ง และการสั่นพ้องในท่อปลายเปิด–ปิด">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232168d8'/%3E%3Cpath d='M18 18h20v6H24v24h14v6H18z' fill='white'/%3E%3Cpath d='M41 24c5 4 5 12 0 16M47 18c9 8 9 20 0 28' fill='none' stroke='%23ffc247' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
-<title>SonicLens v0.1 | แบบจำลองการสั่นพ้องในท่อ</title>
+<title>SonicLens | การสั่นพ้องในหลอดเรโซแนนซ์</title>
 <style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
 </head>
 <body>
-<iframe id="codex-visualization" sandbox="allow-scripts" allow="autoplay" referrerpolicy="no-referrer" title="SonicLens v0.1 แบบจำลองการสั่นพ้องในท่อ" data-srcdoc="&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+<iframe id="codex-visualization" sandbox="allow-scripts allow-same-origin" allow="autoplay" referrerpolicy="no-referrer" title="การสั่นพ้องในหลอดเรโซแนนซ์" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;th&quot; data-visualize-standalone&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
-&lt;title&gt;Soniclens V01 Redesign&lt;/title&gt;
+&lt;title&gt;SonicLens | การสั่นพ้องในหลอดเรโซแนนซ์&lt;/title&gt;
 &lt;style&gt;:root {
   color-scheme: light dark;
   background-color: var(
@@ -1550,52 +1550,55 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/script&gt;
 &lt;div id=&quot;soniclens-v01-redesign&quot;&gt;
   &lt;div class=&quot;sl-heading&quot;&gt;
-    &lt;div&gt;
-      &lt;h2&gt;SonicLens v0.1&lt;/h2&gt;
-      &lt;p class=&quot;text-muted&quot;&gt;ปรับค่าและอ่านผลได้รอบตัวท่อ โดยไม่ต้องเลื่อนหน้าจอไปมา&lt;/p&gt;
+    &lt;h2 data-i18n=&quot;experimentTitle&quot;&gt;การสั่นพ้องในหลอดเรโซแนนซ์&lt;/h2&gt;
+    &lt;div class=&quot;sl-header-actions&quot;&gt;
+      &lt;div class=&quot;sl-language-switch&quot; role=&quot;group&quot; aria-label=&quot;Language&quot;&gt;
+        &lt;button class=&quot;btn sl-language-button&quot; type=&quot;button&quot; data-language=&quot;th&quot; aria-pressed=&quot;true&quot;&gt;ไทย&lt;/button&gt;
+        &lt;button class=&quot;btn sl-language-button&quot; type=&quot;button&quot; data-language=&quot;en-US&quot; aria-pressed=&quot;false&quot;&gt;English (US)&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;button id=&quot;sl-sound&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;
+        &lt;i data-lucide=&quot;volume-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        &lt;span&gt;เริ่มเสียง&lt;/span&gt;
+      &lt;/button&gt;
     &lt;/div&gt;
-    &lt;button id=&quot;sl-sound&quot; class=&quot;btn btn-primary&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;
-      &lt;i data-lucide=&quot;volume-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;span&gt;เริ่มเสียง&lt;/span&gt;
-    &lt;/button&gt;
   &lt;/div&gt;
 
   &lt;div class=&quot;sl-stage&quot;&gt;
     &lt;section class=&quot;card sl-controls&quot; aria-labelledby=&quot;sl-source-title&quot;&gt;
-      &lt;h3 id=&quot;sl-source-title&quot;&gt;แหล่งกำเนิดและอากาศ&lt;/h3&gt;
+      &lt;h3 id=&quot;sl-source-title&quot; data-i18n=&quot;sourceAir&quot;&gt;แหล่งกำเนิดและอากาศ&lt;/h3&gt;
 
-      &lt;label class=&quot;form-label&quot; for=&quot;sl-frequency-input&quot;&gt;ความถี่แหล่งกำเนิด&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;sl-frequency-input&quot; data-i18n=&quot;sourceFrequency&quot;&gt;ความถี่แหล่งกำเนิด&lt;/label&gt;
       &lt;div class=&quot;sl-input-row&quot;&gt;
         &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;frequency&quot; data-delta=&quot;-1&quot;&gt;−1&lt;/button&gt;
         &lt;input id=&quot;sl-frequency-input&quot; class=&quot;form-control tabular-nums&quot; type=&quot;number&quot; min=&quot;100&quot; max=&quot;2000&quot; step=&quot;1&quot; value=&quot;200&quot; inputmode=&quot;numeric&quot;&gt;
         &lt;span class=&quot;text-muted&quot;&gt;Hz&lt;/span&gt;
         &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;frequency&quot; data-delta=&quot;1&quot;&gt;+1&lt;/button&gt;
       &lt;/div&gt;
-      &lt;input id=&quot;sl-frequency-range&quot; class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;100&quot; max=&quot;2000&quot; step=&quot;1&quot; value=&quot;200&quot; aria-label=&quot;แถบปรับความถี่&quot;&gt;
+      &lt;input id=&quot;sl-frequency-range&quot; class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;100&quot; max=&quot;2000&quot; step=&quot;1&quot; value=&quot;200&quot; aria-label=&quot;แถบปรับความถี่&quot; data-i18n-aria-label=&quot;frequencySlider&quot;&gt;
       &lt;p id=&quot;sl-frequency-error&quot; class=&quot;text-small text-destructive sl-error&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;
 
       &lt;hr&gt;
 
-      &lt;label class=&quot;form-label&quot; for=&quot;sl-temperature-input&quot;&gt;อุณหภูมิอากาศ&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;sl-temperature-input&quot; data-i18n=&quot;airTemperature&quot;&gt;อุณหภูมิอากาศ&lt;/label&gt;
       &lt;div class=&quot;sl-input-row&quot;&gt;
         &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;temperature&quot; data-delta=&quot;-1&quot;&gt;−1&lt;/button&gt;
         &lt;input id=&quot;sl-temperature-input&quot; class=&quot;form-control tabular-nums&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;40&quot; step=&quot;0.1&quot; value=&quot;20.0&quot; inputmode=&quot;decimal&quot;&gt;
         &lt;span class=&quot;text-muted&quot;&gt;°C&lt;/span&gt;
         &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;temperature&quot; data-delta=&quot;1&quot;&gt;+1&lt;/button&gt;
       &lt;/div&gt;
-      &lt;input id=&quot;sl-temperature-range&quot; class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;40&quot; step=&quot;0.1&quot; value=&quot;20&quot; aria-label=&quot;แถบปรับอุณหภูมิ&quot;&gt;
+      &lt;input id=&quot;sl-temperature-range&quot; class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;40&quot; step=&quot;0.1&quot; value=&quot;20&quot; aria-label=&quot;แถบปรับอุณหภูมิ&quot; data-i18n-aria-label=&quot;temperatureSlider&quot;&gt;
       &lt;p id=&quot;sl-temperature-error&quot; class=&quot;text-small text-destructive sl-error&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;
 
       &lt;div class=&quot;sl-live-value&quot;&gt;
-        &lt;span class=&quot;text-muted&quot;&gt;ความเร็วเสียง&lt;/span&gt;
+        &lt;span class=&quot;text-muted&quot; data-i18n=&quot;soundSpeed&quot;&gt;ความเร็วเสียง&lt;/span&gt;
         &lt;strong id=&quot;sl-speed&quot; class=&quot;tabular-nums&quot;&gt;343.0 m/s&lt;/strong&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;sl-center&quot; aria-label=&quot;ภาพจำลองหลอดเรโซแนนซ์&quot;&gt;
+    &lt;section class=&quot;sl-center&quot; aria-label=&quot;ภาพจำลองหลอดเรโซแนนซ์&quot; data-i18n-aria-label=&quot;simulationAria&quot;&gt;
       &lt;div class=&quot;sl-speaker-wrap&quot; aria-hidden=&quot;true&quot;&gt;
         &lt;i data-lucide=&quot;volume-2&quot;&gt;&lt;/i&gt;
-        &lt;span&gt;ระยะ 2.0 cm&lt;/span&gt;
+        &lt;span data-i18n=&quot;speakerDistance&quot;&gt;ระยะ 2.0 cm&lt;/span&gt;
       &lt;/div&gt;
 
       &lt;div class=&quot;sl-apparatus-row&quot;&gt;
@@ -1608,24 +1611,50 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;svg id=&quot;sl-displacement&quot; class=&quot;sl-displacement&quot; viewBox=&quot;0 0 100 300&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
                 &lt;path id=&quot;sl-displacement-path&quot; d=&quot;&quot;&gt;&lt;/path&gt;
               &lt;/svg&gt;
+              &lt;svg id=&quot;sl-standing-wave&quot; class=&quot;sl-standing-wave&quot; viewBox=&quot;0 0 100 300&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;คลื่นนิ่งในท่อ แสดงซองแอมพลิจูดและคลื่นขณะหนึ่ง&quot; data-i18n-aria-label=&quot;standingWaveAria&quot;&gt;
+                &lt;path id=&quot;sl-wave-fill&quot; class=&quot;sl-wave-fill&quot; d=&quot;&quot;&gt;&lt;/path&gt;
+                &lt;path id=&quot;sl-wave-left&quot; class=&quot;sl-wave-envelope&quot; d=&quot;&quot;&gt;&lt;/path&gt;
+                &lt;path id=&quot;sl-wave-right&quot; class=&quot;sl-wave-envelope&quot; d=&quot;&quot;&gt;&lt;/path&gt;
+                &lt;path id=&quot;sl-wave-live&quot; class=&quot;sl-wave-live&quot; d=&quot;&quot;&gt;&lt;/path&gt;
+              &lt;/svg&gt;
             &lt;/div&gt;
-            &lt;div id=&quot;sl-water&quot; class=&quot;sl-water&quot;&gt;&lt;span&gt;น้ำ&lt;/span&gt;&lt;/div&gt;
-            &lt;div id=&quot;sl-water-line&quot; class=&quot;sl-water-line&quot;&gt;&lt;/div&gt;
+            &lt;div id=&quot;sl-water&quot; class=&quot;sl-water&quot;&gt;&lt;span data-i18n=&quot;water&quot;&gt;น้ำ&lt;/span&gt;&lt;/div&gt;
+            &lt;div id=&quot;sl-water-line&quot; class=&quot;sl-water-line&quot; role=&quot;slider&quot; tabindex=&quot;0&quot; aria-label=&quot;ลากผิวน้ำขึ้นลงเพื่อปรับความยาวลำอากาศ&quot; data-i18n-aria-label=&quot;waterDragAria&quot; aria-orientation=&quot;vertical&quot; aria-valuemin=&quot;0.100&quot; aria-valuemax=&quot;2.000&quot; aria-valuenow=&quot;0.413&quot; aria-valuetext=&quot;ความยาวลำอากาศ 0.413 เมตร&quot; aria-describedby=&quot;sl-water-control-help&quot;&gt;
+              &lt;span class=&quot;sl-water-drag-handle&quot; aria-hidden=&quot;true&quot;&gt;
+                &lt;i data-lucide=&quot;move-vertical&quot;&gt;&lt;/i&gt;
+                &lt;span data-i18n=&quot;drag&quot;&gt;ลาก&lt;/span&gt;
+              &lt;/span&gt;
+            &lt;/div&gt;
           &lt;/div&gt;
-          &lt;div id=&quot;sl-length-tag&quot; class=&quot;sl-length-tag tabular-nums&quot;&gt;L = 0.413 m&lt;/div&gt;
         &lt;/div&gt;
 
-        &lt;div class=&quot;sl-length-rail&quot;&gt;
-          &lt;span class=&quot;text-small text-muted&quot;&gt;0.100 m&lt;/span&gt;
-          &lt;input id=&quot;sl-length-range&quot; class=&quot;form-range sl-vertical-range&quot; type=&quot;range&quot; min=&quot;0.100&quot; max=&quot;2.000&quot; step=&quot;0.001&quot; value=&quot;0.413&quot; aria-label=&quot;แถบปรับความยาวลำอากาศ&quot;&gt;
-          &lt;span class=&quot;text-small text-muted&quot;&gt;2.000 m&lt;/span&gt;
+        &lt;div class=&quot;sl-length-rail&quot; aria-label=&quot;ตัวควบคุมระดับน้ำ&quot; data-i18n-aria-label=&quot;waterControlAria&quot;&gt;
+          &lt;div class=&quot;sl-water-control-label&quot; id=&quot;sl-water-control-help&quot;&gt;
+            &lt;i data-lucide=&quot;move-vertical&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+            &lt;strong data-i18n=&quot;adjustWater&quot;&gt;ปรับระดับน้ำ&lt;/strong&gt;
+          &lt;/div&gt;
+          &lt;span class=&quot;text-small sl-water-control-hint&quot; data-i18n=&quot;findResonance&quot;&gt;ค้นหาจุดสั่นพ้อง&lt;/span&gt;
+          &lt;span class=&quot;text-small sl-level-label&quot; data-i18n=&quot;waterHigh&quot;&gt;น้ำสูง · 0.100 m&lt;/span&gt;
+          &lt;div class=&quot;sl-water-buttons&quot; role=&quot;group&quot; aria-describedby=&quot;sl-water-control-help&quot;&gt;
+            &lt;button class=&quot;btn sl-water-adjust&quot; type=&quot;button&quot; data-length-delta=&quot;-0.001&quot; aria-label=&quot;เลื่อนระดับน้ำขึ้น ลดความยาวลำอากาศ 0.1 เซนติเมตร&quot; data-i18n-aria-label=&quot;waterUpAria&quot;&gt;
+              &lt;i data-lucide=&quot;arrow-up&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+              &lt;span data-i18n=&quot;waterUp&quot;&gt;น้ำขึ้น&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;strong id=&quot;sl-slider-value&quot; class=&quot;sl-slider-value tabular-nums&quot; aria-live=&quot;polite&quot;&gt;L = 0.413 m&lt;/strong&gt;
+            &lt;button class=&quot;btn sl-water-adjust&quot; type=&quot;button&quot; data-length-delta=&quot;0.001&quot; aria-label=&quot;เลื่อนระดับน้ำลง เพิ่มความยาวลำอากาศ 0.1 เซนติเมตร&quot; data-i18n-aria-label=&quot;waterDownAria&quot;&gt;
+              &lt;i data-lucide=&quot;arrow-down&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+              &lt;span data-i18n=&quot;waterDown&quot;&gt;น้ำลง&lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class=&quot;text-small sl-level-label&quot; data-i18n=&quot;waterLow&quot;&gt;น้ำต่ำ · 2.000 m&lt;/span&gt;
         &lt;/div&gt;
       &lt;/div&gt;
 
-      &lt;div class=&quot;sl-mode-controls&quot; aria-label=&quot;มุมมองของแบบจำลอง&quot;&gt;
-        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;particles&quot; aria-pressed=&quot;true&quot;&gt;อนุภาค&lt;/button&gt;
-        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;pressure&quot; aria-pressed=&quot;false&quot;&gt;ความดัน&lt;/button&gt;
-        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;displacement&quot; aria-pressed=&quot;false&quot;&gt;การกระจัด&lt;/button&gt;
+      &lt;div class=&quot;sl-mode-controls&quot; aria-label=&quot;มุมมองของแบบจำลอง&quot; data-i18n-aria-label=&quot;viewControlsAria&quot;&gt;
+        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;particles&quot; aria-pressed=&quot;true&quot; data-i18n=&quot;particles&quot;&gt;อนุภาค&lt;/button&gt;
+        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;pressure&quot; aria-pressed=&quot;false&quot; data-i18n=&quot;pressure&quot;&gt;ความดัน&lt;/button&gt;
+        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;displacement&quot; aria-pressed=&quot;false&quot; data-i18n=&quot;displacement&quot;&gt;การกระจัด&lt;/button&gt;
+        &lt;button class=&quot;btn sl-mode&quot; type=&quot;button&quot; data-mode=&quot;wave&quot; aria-pressed=&quot;false&quot; data-i18n=&quot;standingWave&quot;&gt;คลื่นนิ่งในท่อ&lt;/button&gt;
       &lt;/div&gt;
 
       &lt;div class=&quot;sl-equation text-small tabular-nums&quot; aria-live=&quot;polite&quot;&gt;
@@ -1634,14 +1663,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/section&gt;
 
     &lt;section class=&quot;card sl-results&quot; aria-labelledby=&quot;sl-length-title&quot;&gt;
-      &lt;h3 id=&quot;sl-length-title&quot;&gt;ความยาวและผลลัพธ์&lt;/h3&gt;
+      &lt;h3 id=&quot;sl-length-title&quot; data-i18n=&quot;lengthResults&quot;&gt;ความยาวและผลลัพธ์&lt;/h3&gt;
 
-      &lt;label class=&quot;form-label&quot; for=&quot;sl-length-input&quot;&gt;ความยาวลำอากาศ&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;sl-length-input&quot; data-i18n=&quot;airColumnLength&quot;&gt;ความยาวลำอากาศ&lt;/label&gt;
       &lt;div class=&quot;sl-input-row&quot;&gt;
-        &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;length&quot; data-delta=&quot;-0.01&quot;&gt;−1 cm&lt;/button&gt;
+        &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;length&quot; data-delta=&quot;-0.001&quot;&gt;−0.1 cm&lt;/button&gt;
         &lt;input id=&quot;sl-length-input&quot; class=&quot;form-control tabular-nums&quot; type=&quot;number&quot; min=&quot;0.100&quot; max=&quot;2.000&quot; step=&quot;0.001&quot; value=&quot;0.413&quot; inputmode=&quot;decimal&quot;&gt;
         &lt;span class=&quot;text-muted&quot;&gt;m&lt;/span&gt;
-        &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;length&quot; data-delta=&quot;0.01&quot;&gt;+1 cm&lt;/button&gt;
+        &lt;button class=&quot;btn text-nowrap sl-step&quot; type=&quot;button&quot; data-target=&quot;length&quot; data-delta=&quot;0.001&quot;&gt;+0.1 cm&lt;/button&gt;
       &lt;/div&gt;
       &lt;p id=&quot;sl-length-error&quot; class=&quot;text-small text-destructive sl-error&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;
 
@@ -1653,11 +1682,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
 
       &lt;dl class=&quot;sl-result-list tabular-nums&quot;&gt;
-        &lt;div&gt;&lt;dt&gt;ความถี่ธรรมชาติใกล้สุด&lt;/dt&gt;&lt;dd id=&quot;sl-natural-frequency&quot;&gt;200.2 Hz&lt;/dd&gt;&lt;/div&gt;
-        &lt;div&gt;&lt;dt&gt;ผลต่างความถี่ Δf&lt;/dt&gt;&lt;dd id=&quot;sl-delta-frequency&quot;&gt;−0.2 Hz&lt;/dd&gt;&lt;/div&gt;
-        &lt;div&gt;&lt;dt&gt;ความยาวที่ทำนาย&lt;/dt&gt;&lt;dd id=&quot;sl-predicted-length&quot;&gt;0.413 m&lt;/dd&gt;&lt;/div&gt;
-        &lt;div&gt;&lt;dt&gt;แอมพลิจูดสัมพัทธ์&lt;/dt&gt;&lt;dd id=&quot;sl-relative-amplitude&quot;&gt;0.998&lt;/dd&gt;&lt;/div&gt;
-        &lt;div&gt;&lt;dt&gt;ระดับเสียงสัมพัทธ์&lt;/dt&gt;&lt;dd id=&quot;sl-relative-db&quot;&gt;−0.0 dB&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt data-i18n=&quot;nearestNaturalFrequency&quot;&gt;ความถี่ธรรมชาติใกล้สุด&lt;/dt&gt;&lt;dd id=&quot;sl-natural-frequency&quot;&gt;200.2 Hz&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt data-i18n=&quot;frequencyDifference&quot;&gt;ผลต่างความถี่ Δf&lt;/dt&gt;&lt;dd id=&quot;sl-delta-frequency&quot;&gt;−0.2 Hz&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt data-i18n=&quot;predictedLength&quot;&gt;ความยาวที่ทำนาย&lt;/dt&gt;&lt;dd id=&quot;sl-predicted-length&quot;&gt;0.413 m&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt data-i18n=&quot;relativeAmplitude&quot;&gt;แอมพลิจูดสัมพัทธ์&lt;/dt&gt;&lt;dd id=&quot;sl-relative-amplitude&quot;&gt;0.998&lt;/dd&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;dt data-i18n=&quot;relativeSoundLevel&quot;&gt;ระดับเสียงสัมพัทธ์&lt;/dt&gt;&lt;dd id=&quot;sl-relative-db&quot;&gt;−0.0 dB&lt;/dd&gt;&lt;/div&gt;
       &lt;/dl&gt;
 
       &lt;div class=&quot;sl-sound-state&quot;&gt;
@@ -1669,14 +1698,14 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;div class=&quot;sl-footer&quot;&gt;
     &lt;div class=&quot;viz-row text-small text-muted&quot;&gt;
-      &lt;span&gt;ท่อปลายเปิด–ปิด&lt;/span&gt;
-      &lt;span&gt;เส้นผ่านศูนย์กลาง 5.00 cm&lt;/span&gt;
+      &lt;span data-i18n=&quot;openClosedPipe&quot;&gt;ท่อปลายเปิด–ปิด&lt;/span&gt;
+      &lt;span data-i18n=&quot;diameter&quot;&gt;เส้นผ่านศูนย์กลาง 5.00 cm&lt;/span&gt;
       &lt;span&gt;e = 0.6133r = 1.533 cm&lt;/span&gt;
       &lt;span&gt;Q = 30&lt;/span&gt;
     &lt;/div&gt;
     &lt;button id=&quot;sl-reset&quot; class=&quot;btn btn-ghost&quot; type=&quot;button&quot;&gt;
       &lt;i data-lucide=&quot;rotate-ccw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      รีเซต
+      &lt;span data-i18n=&quot;reset&quot;&gt;รีเซต&lt;/span&gt;
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1703,19 +1732,37 @@ html&gt;body{padding:0}&lt;/style&gt;
     flex-wrap: wrap;
   }
 
+  #soniclens-v01-redesign .sl-header-actions,
+  #soniclens-v01-redesign .sl-language-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  #soniclens-v01-redesign .sl-language-button {
+    white-space: nowrap;
+  }
+
+  #soniclens-v01-redesign .sl-language-button[aria-pressed=&quot;true&quot;] {
+    color: var(--primary-foreground);
+    background: var(--primary);
+  }
+
   #soniclens-v01-redesign .sl-heading h2,
-  #soniclens-v01-redesign .sl-heading p,
   #soniclens-v01-redesign h3 {
     margin: 0;
   }
 
-  #soniclens-v01-redesign .sl-heading p {
-    margin-top: 4px;
+  #soniclens-v01-redesign .sl-heading h2 {
+    font-size: clamp(1.55rem, 2.5vw, 2rem);
+    font-weight: 800;
+    line-height: 1.25;
   }
 
   #soniclens-v01-redesign .sl-stage {
     display: grid;
-    grid-template-columns: minmax(210px, 0.9fr) minmax(300px, 1.15fr) minmax(230px, 0.95fr);
+    grid-template-columns: minmax(200px, 0.7fr) minmax(350px, 1.4fr) minmax(230px, 0.9fr);
     gap: 16px;
     align-items: center;
     margin-top: 16px;
@@ -1784,29 +1831,31 @@ html&gt;body{padding:0}&lt;/style&gt;
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 18px;
+    gap: 12px;
   }
 
   #soniclens-v01-redesign .sl-tube-wrap {
     position: relative;
-    width: 172px;
+    width: 188px;
     height: calc(var(--sl-tube-height) + 30px);
   }
 
   #soniclens-v01-redesign .sl-open-end {
     position: absolute;
     top: 0;
-    left: 27px;
-    width: 116px;
+    left: 50%;
+    width: 138px;
+    transform: translateX(-50%);
     border-top: 2px dashed var(--viz-series-2);
   }
 
   #soniclens-v01-redesign .sl-tube {
     position: absolute;
     top: 0;
-    left: 40px;
-    width: 90px;
+    left: 50%;
+    width: 108px;
     height: var(--sl-tube-height);
+    transform: translateX(-50%);
     border-left: 6px solid color-mix(in srgb, var(--border) 72%, transparent);
     border-right: 6px solid color-mix(in srgb, var(--border) 72%, transparent);
     border-bottom: 6px solid color-mix(in srgb, var(--border) 72%, transparent);
@@ -1836,51 +1885,159 @@ html&gt;body{padding:0}&lt;/style&gt;
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 10px;
-    color: var(--foreground);
-    background: color-mix(in srgb, var(--viz-series-4) 54%, transparent);
+    color: var(--primary-foreground);
+    background:
+      radial-gradient(circle at 24% 12%, color-mix(in srgb, var(--blue) 55%, transparent), transparent 34%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--blue) 76%, var(--background)),
+        color-mix(in srgb, var(--blue) 91%, var(--foreground))
+      );
   }
 
   #soniclens-v01-redesign .sl-water span {
-    opacity: 0.7;
+    opacity: 0.94;
+    font-weight: 500;
   }
 
   #soniclens-v01-redesign .sl-water-line {
     top: 63px;
-    height: 4px;
-    background: var(--viz-series-4);
+    height: 5px;
+    background: var(--blue);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--blue) 55%, transparent);
+    z-index: 8;
+    cursor: ns-resize;
+    touch-action: none;
+    user-select: none;
   }
 
-  #soniclens-v01-redesign .sl-length-tag {
-    position: absolute;
-    left: 136px;
-    top: 52px;
-    width: max-content;
-    color: var(--foreground);
-  }
-
-  #soniclens-v01-redesign .sl-length-tag::before {
+  #soniclens-v01-redesign .sl-water-line::before {
     content: &quot;&quot;;
-    display: inline-block;
-    width: 20px;
-    border-top: 1px solid var(--border);
-    margin: 0 6px 3px 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    height: 45px;
+  }
+
+  #soniclens-v01-redesign .sl-water-drag-handle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 58px;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 1px solid color-mix(in srgb, var(--blue) 58%, var(--border));
+    border-radius: 999px;
+    color: var(--primary-foreground);
+    background: color-mix(in srgb, var(--blue) 86%, var(--foreground));
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--blue) 38%, transparent);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  #soniclens-v01-redesign .sl-water-drag-handle svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  #soniclens-v01-redesign .sl-water-line:is(:hover, :focus-visible, .is-dragging) .sl-water-drag-handle {
+    background: var(--blue);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 18%, transparent);
+  }
+
+  #soniclens-v01-redesign .sl-water-line:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
 
   #soniclens-v01-redesign .sl-length-rail {
-    height: var(--sl-tube-height);
+    width: 148px;
+    height: calc(var(--sl-tube-height) + 30px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 2px;
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 10px 8px;
+    border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--accent) 86%, var(--background));
   }
 
-  #soniclens-v01-redesign .sl-vertical-range {
-    writing-mode: vertical-lr;
-    direction: ltr;
-    width: 22px;
-    height: 250px;
-    margin: 0;
+  #soniclens-v01-redesign .sl-water-control-label {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.25;
+    color: var(--accent-foreground);
+    white-space: nowrap;
+  }
+
+  #soniclens-v01-redesign .sl-water-control-label svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #soniclens-v01-redesign .sl-water-control-hint {
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+
+  #soniclens-v01-redesign .sl-level-label {
+    color: var(--accent-foreground);
+    opacity: 0.78;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  #soniclens-v01-redesign .sl-water-buttons {
+    width: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    flex-direction: column;
+    align-items: center;
+    justify-items: stretch;
+    gap: 8px;
+  }
+
+  #soniclens-v01-redesign .sl-water-adjust {
+    width: 100%;
+    min-height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    color: var(--accent-foreground);
+    background: color-mix(in srgb, var(--blue) 12%, var(--background));
+    border-color: color-mix(in srgb, var(--blue) 44%, var(--border));
+    touch-action: manipulation;
+  }
+
+  #soniclens-v01-redesign .sl-water-adjust svg {
+    width: 26px;
+    height: 26px;
+    color: var(--blue);
+  }
+
+  #soniclens-v01-redesign .sl-water-adjust:active {
+    background: color-mix(in srgb, var(--blue) 22%, var(--background));
+  }
+
+  #soniclens-v01-redesign .sl-slider-value {
+    color: var(--accent-foreground);
+    text-align: center;
+    white-space: nowrap;
   }
 
   #soniclens-v01-redesign .sl-particle {
@@ -1893,7 +2050,8 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   #soniclens-v01-redesign .sl-pressure,
-  #soniclens-v01-redesign .sl-displacement {
+  #soniclens-v01-redesign .sl-displacement,
+  #soniclens-v01-redesign .sl-standing-wave {
     position: absolute;
     inset: 0;
     display: none;
@@ -1913,7 +2071,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     background: var(--viz-series-3);
   }
 
-  #soniclens-v01-redesign .sl-displacement {
+  #soniclens-v01-redesign .sl-displacement,
+  #soniclens-v01-redesign .sl-standing-wave {
     width: 100%;
     height: 100%;
   }
@@ -1921,7 +2080,27 @@ html&gt;body{padding:0}&lt;/style&gt;
   #soniclens-v01-redesign .sl-displacement path {
     fill: none;
     stroke: var(--viz-series-1);
-    stroke-width: 4;
+    stroke-width: 5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #soniclens-v01-redesign .sl-wave-fill {
+    fill: color-mix(in srgb, var(--viz-series-1) 20%, transparent);
+    stroke: none;
+  }
+
+  #soniclens-v01-redesign .sl-wave-envelope {
+    fill: none;
+    stroke: var(--muted-foreground);
+    stroke-width: 2;
+    stroke-dasharray: 5 4;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #soniclens-v01-redesign .sl-wave-live {
+    fill: none;
+    stroke: var(--viz-series-1);
+    stroke-width: 5;
     vector-effect: non-scaling-stroke;
   }
 
@@ -2015,10 +2194,27 @@ html&gt;body{padding:0}&lt;/style&gt;
     #soniclens-v01-redesign .sl-center { grid-row: 1; }
     #soniclens-v01-redesign .sl-controls { grid-row: 2; }
     #soniclens-v01-redesign .sl-results { grid-row: 3; }
-
-    #soniclens-v01-redesign .sl-length-rail {
-      display: none;
+    #soniclens-v01-redesign .sl-header-actions {
+      width: 100%;
+      justify-content: space-between;
     }
+
+    #soniclens-v01-redesign .sl-apparatus-row { gap: 6px; }
+    #soniclens-v01-redesign .sl-tube-wrap { width: 160px; }
+    #soniclens-v01-redesign .sl-length-rail { width: 148px; }
+    #soniclens-v01-redesign .sl-mode-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    #soniclens-v01-redesign .sl-mode { white-space: nowrap; }
+    #soniclens-v01-redesign .sl-level-label,
+    #soniclens-v01-redesign .sl-water-control-hint { font-size: 11px; }
+  }
+
+  @media (max-width: 340px) {
+    #soniclens-v01-redesign .sl-apparatus-row { gap: 4px; }
+    #soniclens-v01-redesign .sl-tube-wrap { width: 150px; }
+    #soniclens-v01-redesign .sl-length-rail { width: 128px; padding-inline: 6px; }
   }
 &lt;/style&gt;
 
@@ -2027,7 +2223,113 @@ html&gt;body{padding:0}&lt;/style&gt;
   const root = document.getElementById(&#x27;soniclens-v01-redesign&#x27;);
   if (!root) return;
 
+  const translations = {
+    th: {
+      experimentTitle: &#x27;การสั่นพ้องในหลอดเรโซแนนซ์&#x27;,
+      sourceAir: &#x27;แหล่งกำเนิดและอากาศ&#x27;,
+      sourceFrequency: &#x27;ความถี่แหล่งกำเนิด&#x27;,
+      frequencySlider: &#x27;แถบปรับความถี่&#x27;,
+      airTemperature: &#x27;อุณหภูมิอากาศ&#x27;,
+      temperatureSlider: &#x27;แถบปรับอุณหภูมิ&#x27;,
+      soundSpeed: &#x27;ความเร็วเสียง&#x27;,
+      simulationAria: &#x27;ภาพจำลองหลอดเรโซแนนซ์&#x27;,
+      speakerDistance: &#x27;ระยะ 2.0 cm&#x27;,
+      standingWaveAria: &#x27;คลื่นนิ่งในท่อ แสดงซองแอมพลิจูดและคลื่นขณะหนึ่ง&#x27;,
+      water: &#x27;น้ำ&#x27;,
+      waterDragAria: &#x27;ลากผิวน้ำขึ้นลงเพื่อปรับความยาวลำอากาศ&#x27;,
+      drag: &#x27;ลาก&#x27;,
+      waterControlAria: &#x27;ตัวควบคุมระดับน้ำ&#x27;,
+      adjustWater: &#x27;ปรับระดับน้ำ&#x27;,
+      findResonance: &#x27;ค้นหาจุดสั่นพ้อง&#x27;,
+      waterHigh: &#x27;น้ำสูง · 0.100 m&#x27;,
+      waterLow: &#x27;น้ำต่ำ · 2.000 m&#x27;,
+      waterUp: &#x27;น้ำขึ้น&#x27;,
+      waterDown: &#x27;น้ำลง&#x27;,
+      waterUpAria: &#x27;เลื่อนระดับน้ำขึ้น ลดความยาวลำอากาศ 0.1 เซนติเมตร&#x27;,
+      waterDownAria: &#x27;เลื่อนระดับน้ำลง เพิ่มความยาวลำอากาศ 0.1 เซนติเมตร&#x27;,
+      viewControlsAria: &#x27;มุมมองของแบบจำลอง&#x27;,
+      particles: &#x27;อนุภาค&#x27;,
+      pressure: &#x27;ความดัน&#x27;,
+      displacement: &#x27;การกระจัด&#x27;,
+      standingWave: &#x27;คลื่นนิ่งในท่อ&#x27;,
+      lengthResults: &#x27;ความยาวและผลลัพธ์&#x27;,
+      airColumnLength: &#x27;ความยาวลำอากาศ&#x27;,
+      nearestNaturalFrequency: &#x27;ความถี่ธรรมชาติใกล้สุด&#x27;,
+      frequencyDifference: &#x27;ผลต่างความถี่ Δf&#x27;,
+      predictedLength: &#x27;ความยาวที่ทำนาย&#x27;,
+      relativeAmplitude: &#x27;แอมพลิจูดสัมพัทธ์&#x27;,
+      relativeSoundLevel: &#x27;ระดับเสียงสัมพัทธ์&#x27;,
+      openClosedPipe: &#x27;ท่อปลายเปิด–ปิด&#x27;,
+      diameter: &#x27;เส้นผ่านศูนย์กลาง 5.00 cm&#x27;,
+      reset: &#x27;รีเซต&#x27;,
+      invalidNumber: &#x27;กรุณากรอกเป็นตัวเลข&#x27;,
+      rangeError: (min, max) =&gt; `กรอกได้ตั้งแต่ ${min} ถึง ${max}`,
+      waterValueAria: value =&gt; `ความยาวลำอากาศ ${value} เมตร`,
+      orderHarmonic: (order, harmonic) =&gt; `ครั้งที่ ${order} · ฮาร์มอนิก ${harmonic}`,
+      inBand: &#x27;อยู่ในแถบการสั่นพ้อง&#x27;,
+      notInBand: &#x27;ยังไม่ถึงการสั่นพ้อง&#x27;,
+      outOfRange: &#x27;นอกช่วง&#x27;,
+      soundStart: &#x27;เริ่มเสียง&#x27;,
+      soundStop: &#x27;หยุดเสียง&#x27;,
+      soundOff: &#x27;เสียงปิดอยู่&#x27;,
+      soundPlaying: (frequency, amplitude) =&gt; `กำลังเล่น ${frequency} Hz · ความดังสัมพัทธ์ ${amplitude}`,
+      soundError: &#x27;ยังเปิดเสียงไม่ได้ กรุณาแตะ “เริ่มเสียง” อีกครั้งและตรวจระดับเสียงของเครื่อง&#x27;
+    },
+    &#x27;en-US&#x27;: {
+      experimentTitle: &#x27;Resonance in a Resonance Tube&#x27;,
+      sourceAir: &#x27;Source and air&#x27;,
+      sourceFrequency: &#x27;Source frequency&#x27;,
+      frequencySlider: &#x27;Frequency slider&#x27;,
+      airTemperature: &#x27;Air temperature&#x27;,
+      temperatureSlider: &#x27;Temperature slider&#x27;,
+      soundSpeed: &#x27;Speed of sound&#x27;,
+      simulationAria: &#x27;Resonance tube simulation&#x27;,
+      speakerDistance: &#x27;Distance 2.0 cm&#x27;,
+      standingWaveAria: &#x27;Standing wave in the tube, showing the amplitude envelope and instantaneous wave&#x27;,
+      water: &#x27;Water&#x27;,
+      waterDragAria: &#x27;Drag the water surface up or down to adjust the air-column length&#x27;,
+      drag: &#x27;Drag&#x27;,
+      waterControlAria: &#x27;Water-level controls&#x27;,
+      adjustWater: &#x27;Water level&#x27;,
+      findResonance: &#x27;Find resonance&#x27;,
+      waterHigh: &#x27;High water · 0.100 m&#x27;,
+      waterLow: &#x27;Low water · 2.000 m&#x27;,
+      waterUp: &#x27;Water up&#x27;,
+      waterDown: &#x27;Water down&#x27;,
+      waterUpAria: &#x27;Move the water up and decrease the air-column length by 0.1 centimeters&#x27;,
+      waterDownAria: &#x27;Move the water down and increase the air-column length by 0.1 centimeters&#x27;,
+      viewControlsAria: &#x27;Simulation views&#x27;,
+      particles: &#x27;Particles&#x27;,
+      pressure: &#x27;Pressure&#x27;,
+      displacement: &#x27;Displacement&#x27;,
+      standingWave: &#x27;Standing wave&#x27;,
+      lengthResults: &#x27;Length and results&#x27;,
+      airColumnLength: &#x27;Air-column length&#x27;,
+      nearestNaturalFrequency: &#x27;Nearest natural frequency&#x27;,
+      frequencyDifference: &#x27;Frequency difference Δf&#x27;,
+      predictedLength: &#x27;Predicted length&#x27;,
+      relativeAmplitude: &#x27;Relative amplitude&#x27;,
+      relativeSoundLevel: &#x27;Relative sound level&#x27;,
+      openClosedPipe: &#x27;Open–closed pipe&#x27;,
+      diameter: &#x27;Diameter 5.00 cm&#x27;,
+      reset: &#x27;Reset&#x27;,
+      invalidNumber: &#x27;Enter a numeric value&#x27;,
+      rangeError: (min, max) =&gt; `Enter a value from ${min} to ${max}`,
+      waterValueAria: value =&gt; `Air-column length ${value} meters`,
+      orderHarmonic: (order, harmonic) =&gt; `Resonance ${order} · Harmonic ${harmonic}`,
+      inBand: &#x27;Within the resonance band&#x27;,
+      notInBand: &#x27;Outside the resonance band&#x27;,
+      outOfRange: &#x27;out of range&#x27;,
+      soundStart: &#x27;Start sound&#x27;,
+      soundStop: &#x27;Stop sound&#x27;,
+      soundOff: &#x27;Sound is off&#x27;,
+      soundPlaying: (frequency, amplitude) =&gt; `Playing ${frequency} Hz · Relative loudness ${amplitude}`,
+      soundError: &#x27;Sound could not start. Tap “Start sound” again and check the device volume.&#x27;
+    }
+  };
+
   const state = {
+    language: &#x27;th&#x27;,
     frequency: 200,
     length: 0.413,
     temperature: 20,
@@ -2050,19 +2352,26 @@ html&gt;body{padding:0}&lt;/style&gt;
     temperatureInput: root.querySelector(&#x27;#sl-temperature-input&#x27;),
     temperatureRange: root.querySelector(&#x27;#sl-temperature-range&#x27;),
     lengthInput: root.querySelector(&#x27;#sl-length-input&#x27;),
-    lengthRange: root.querySelector(&#x27;#sl-length-range&#x27;),
+    languageButtons: [...root.querySelectorAll(&#x27;.sl-language-button&#x27;)],
+    waterAdjustButtons: [...root.querySelectorAll(&#x27;.sl-water-adjust&#x27;)],
+    sliderValue: root.querySelector(&#x27;#sl-slider-value&#x27;),
     frequencyError: root.querySelector(&#x27;#sl-frequency-error&#x27;),
     temperatureError: root.querySelector(&#x27;#sl-temperature-error&#x27;),
     lengthError: root.querySelector(&#x27;#sl-length-error&#x27;),
     speed: root.querySelector(&#x27;#sl-speed&#x27;),
+    tube: root.querySelector(&#x27;#sl-tube&#x27;),
     air: root.querySelector(&#x27;#sl-air&#x27;),
     water: root.querySelector(&#x27;#sl-water&#x27;),
     waterLine: root.querySelector(&#x27;#sl-water-line&#x27;),
-    lengthTag: root.querySelector(&#x27;#sl-length-tag&#x27;),
     particles: root.querySelector(&#x27;#sl-particles&#x27;),
     pressure: root.querySelector(&#x27;#sl-pressure&#x27;),
     displacement: root.querySelector(&#x27;#sl-displacement&#x27;),
     displacementPath: root.querySelector(&#x27;#sl-displacement-path&#x27;),
+    standingWave: root.querySelector(&#x27;#sl-standing-wave&#x27;),
+    waveFill: root.querySelector(&#x27;#sl-wave-fill&#x27;),
+    waveLeft: root.querySelector(&#x27;#sl-wave-left&#x27;),
+    waveRight: root.querySelector(&#x27;#sl-wave-right&#x27;),
+    waveLive: root.querySelector(&#x27;#sl-wave-live&#x27;),
     effectiveLength: root.querySelector(&#x27;#sl-effective-length&#x27;),
     statusBadge: root.querySelector(&#x27;#sl-status-badge&#x27;),
     modeName: root.querySelector(&#x27;#sl-mode-name&#x27;),
@@ -2088,6 +2397,36 @@ html&gt;body{padding:0}&lt;/style&gt;
   let gainNode = null;
   let audioError = false;
 
+  function t(key, ...args) {
+    const value = translations[state.language]?.[key] ?? translations.th[key] ?? key;
+    return typeof value === &#x27;function&#x27; ? value(...args) : value;
+  }
+
+  function applyLanguage(language, refresh = true) {
+    if (!translations[language]) return;
+    state.language = language;
+    document.documentElement.lang = language;
+
+    root.querySelectorAll(&#x27;[data-i18n]&#x27;).forEach(element =&gt; {
+      element.textContent = t(element.dataset.i18n);
+    });
+    root.querySelectorAll(&#x27;[data-i18n-aria-label]&#x27;).forEach(element =&gt; {
+      element.setAttribute(&#x27;aria-label&#x27;, t(element.dataset.i18nAriaLabel));
+    });
+    els.languageButtons.forEach(button =&gt; {
+      button.setAttribute(&#x27;aria-pressed&#x27;, String(button.dataset.language === language));
+    });
+
+    displayError(&#x27;frequency&#x27;, &#x27;&#x27;);
+    displayError(&#x27;temperature&#x27;, &#x27;&#x27;);
+    displayError(&#x27;length&#x27;, &#x27;&#x27;);
+
+    if (refresh) {
+      syncControls();
+      updatePhysics();
+    }
+  }
+
   function clamp(value, key) {
     return Math.min(limits[key][1], Math.max(limits[key][0], value));
   }
@@ -2099,13 +2438,13 @@ html&gt;body{padding:0}&lt;/style&gt;
   function applyValue(key, rawValue, commit = false) {
     const value = Number(rawValue);
     if (!Number.isFinite(value)) {
-      displayError(key, &#x27;กรุณากรอกเป็นตัวเลข&#x27;);
+      displayError(key, t(&#x27;invalidNumber&#x27;));
       return;
     }
 
     const [min, max] = limits[key];
     if (value &lt; min || value &gt; max) {
-      displayError(key, `กรอกได้ตั้งแต่ ${min} ถึง ${max}`);
+      displayError(key, t(&#x27;rangeError&#x27;, min, max));
       if (!commit) return;
     } else {
       displayError(key, &#x27;&#x27;);
@@ -2122,7 +2461,42 @@ html&gt;body{padding:0}&lt;/style&gt;
     els.temperatureInput.value = state.temperature.toFixed(1);
     els.temperatureRange.value = state.temperature;
     els.lengthInput.value = state.length.toFixed(3);
-    els.lengthRange.value = state.length;
+    els.sliderValue.textContent = `L = ${state.length.toFixed(3)} m`;
+    els.waterLine.setAttribute(&#x27;aria-valuenow&#x27;, state.length.toFixed(3));
+    els.waterLine.setAttribute(&#x27;aria-valuetext&#x27;, t(&#x27;waterValueAria&#x27;, state.length.toFixed(3)));
+    els.waterAdjustButtons.forEach(button =&gt; {
+      const delta = Number(button.dataset.lengthDelta);
+      button.disabled = delta &lt; 0
+        ? state.length &lt;= limits.length[0]
+        : state.length &gt;= limits.length[1];
+    });
+  }
+
+  let activeWaterPointer = null;
+
+  function adjustWaterLength(delta) {
+    const next = Number(clamp(state.length + delta, &#x27;length&#x27;).toFixed(3));
+    applyValue(&#x27;length&#x27;, next, true);
+  }
+
+  function setLengthFromWaterPosition(clientY) {
+    const tubeRect = els.tube.getBoundingClientRect();
+    const minimumY = tubeInnerHeight * limits.length[0] / limits.length[1];
+    const localY = Math.min(
+      tubeInnerHeight,
+      Math.max(minimumY, clientY - tubeRect.top)
+    );
+    const next = Number((localY / tubeInnerHeight * limits.length[1]).toFixed(3));
+    applyValue(&#x27;length&#x27;, next);
+  }
+
+  function finishWaterDrag(event) {
+    if (activeWaterPointer === null || (event &amp;&amp; event.pointerId !== activeWaterPointer)) return;
+    if (els.waterLine.hasPointerCapture?.(activeWaterPointer)) {
+      els.waterLine.releasePointerCapture(activeWaterPointer);
+    }
+    activeWaterPointer = null;
+    els.waterLine.classList.remove(&#x27;is-dragging&#x27;);
   }
 
   function nearestOdd(value) {
@@ -2154,23 +2528,21 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     els.speed.textContent = `${speed.toFixed(1)} m/s`;
     els.effectiveLength.innerHTML = `L&lt;sub&gt;eff&lt;/sub&gt; = ${state.length.toFixed(3)} + ${endCorrection.toFixed(4)} = ${effectiveLength.toFixed(4)} m`;
-    els.lengthTag.textContent = `L = ${state.length.toFixed(3)} m`;
-    els.modeName.textContent = `ครั้งที่ ${resonanceOrder} · ฮาร์มอนิก ${harmonic}`;
+    els.modeName.textContent = t(&#x27;orderHarmonic&#x27;, resonanceOrder, harmonic);
     els.naturalFrequency.textContent = `${naturalFrequency.toFixed(1)} Hz`;
     els.deltaFrequency.textContent = signed(delta, 1, &#x27;Hz&#x27;);
     els.predictedLength.textContent = predictedLength &gt;= limits.length[0] &amp;&amp; predictedLength &lt;= limits.length[1]
       ? `${predictedLength.toFixed(3)} m`
-      : `${predictedLength.toFixed(3)} m (นอกช่วง)`;
+      : `${predictedLength.toFixed(3)} m (${t(&#x27;outOfRange&#x27;)})`;
     els.relativeAmplitude.textContent = amplitude.toFixed(3);
     els.relativeDb.textContent = `${relativeDb.toFixed(1).replace(&#x27;-&#x27;, &#x27;−&#x27;)} dB`;
-    els.statusBadge.textContent = inHalfPowerBand ? &#x27;อยู่ในแถบการสั่นพ้อง&#x27; : &#x27;ยังไม่ถึงการสั่นพ้อง&#x27;;
+    els.statusBadge.textContent = inHalfPowerBand ? t(&#x27;inBand&#x27;) : t(&#x27;notInBand&#x27;);
 
     const airHeight = Math.max(16, tubeInnerHeight * (state.length / limits.length[1]));
     const waterHeight = tubeInnerHeight - airHeight;
     els.air.style.height = `${airHeight}px`;
     els.water.style.height = `${waterHeight}px`;
     els.waterLine.style.top = `${airHeight}px`;
-    els.lengthTag.style.top = `${Math.max(10, airHeight - 12)}px`;
 
     buildVisualLayers(airHeight);
     updateAudio();
@@ -2179,6 +2551,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   function buildVisualLayers(airHeight) {
     const rowCount = Math.max(4, Math.min(26, Math.round(airHeight / 13)));
     const colCount = 5;
+    const airWidth = Math.max(80, els.air.clientWidth);
     els.particles.replaceChildren();
     particleData = [];
 
@@ -2187,7 +2560,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const dot = document.createElement(&#x27;span&#x27;);
         dot.className = &#x27;sl-particle&#x27;;
         const y = rowCount === 1 ? airHeight / 2 : 7 + row * Math.max(1, (airHeight - 14) / (rowCount - 1));
-        const x = 14 + col * 15;
+        const x = 12 + col * Math.max(1, (airWidth - 24) / (colCount - 1));
         dot.style.left = `${x}px`;
         dot.style.top = `${y}px`;
         els.particles.appendChild(dot);
@@ -2229,17 +2602,40 @@ html&gt;body{padding:0}&lt;/style&gt;
         item.band.classList.toggle(&#x27;is-negative&#x27;, pressure &lt; 0);
         item.band.style.opacity = `${0.08 + 0.72 * Math.abs(pressure)}`;
       }
-    } else {
+    } else if (state.mode === &#x27;displacement&#x27;) {
       const h = Math.max(16, els.air.clientHeight);
       const points = [];
       for (let i = 0; i &lt;= 50; i++) {
         const y = i * h / 50;
         const xFromClosed = state.length * (1 - y / h);
         const spatial = Math.sin(harmonic * Math.PI * xFromClosed / (2 * (state.length + endCorrection)));
-        const x = 50 + 35 * amp * spatial * Math.cos(phase);
+        const x = 50 + 48 * amp * spatial * Math.cos(phase);
         points.push(`${i === 0 ? &#x27;M&#x27; : &#x27;L&#x27;} ${x.toFixed(2)} ${(y * 300 / h).toFixed(2)}`);
       }
       els.displacementPath.setAttribute(&#x27;d&#x27;, points.join(&#x27; &#x27;));
+    } else if (state.mode === &#x27;wave&#x27;) {
+      const h = Math.max(16, els.air.clientHeight);
+      const left = [];
+      const right = [];
+      const live = [];
+
+      for (let i = 0; i &lt;= 60; i++) {
+        const y = i * h / 60;
+        const yView = y * 300 / h;
+        const xFromClosed = state.length * (1 - y / h);
+        const spatial = Math.sin(harmonic * Math.PI * xFromClosed / (2 * (state.length + endCorrection)));
+        const envelope = 47 * amp * Math.abs(spatial);
+        const liveX = 50 + 47 * amp * spatial * Math.cos(phase);
+        left.push(`${i === 0 ? &#x27;M&#x27; : &#x27;L&#x27;} ${(50 - envelope).toFixed(2)} ${yView.toFixed(2)}`);
+        right.push(`${i === 0 ? &#x27;M&#x27; : &#x27;L&#x27;} ${(50 + envelope).toFixed(2)} ${yView.toFixed(2)}`);
+        live.push(`${i === 0 ? &#x27;M&#x27; : &#x27;L&#x27;} ${liveX.toFixed(2)} ${yView.toFixed(2)}`);
+      }
+
+      const fillRight = right.slice().reverse().map(segment =&gt; segment.replace(/^[ML]/, &#x27;L&#x27;));
+      els.waveFill.setAttribute(&#x27;d&#x27;, `${left.join(&#x27; &#x27;)} ${fillRight.join(&#x27; &#x27;)} Z`);
+      els.waveLeft.setAttribute(&#x27;d&#x27;, left.join(&#x27; &#x27;));
+      els.waveRight.setAttribute(&#x27;d&#x27;, right.join(&#x27; &#x27;));
+      els.waveLive.setAttribute(&#x27;d&#x27;, live.join(&#x27; &#x27;));
     }
 
     requestAnimationFrame(renderFrame);
@@ -2250,6 +2646,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     els.particles.style.display = mode === &#x27;particles&#x27; ? &#x27;block&#x27; : &#x27;none&#x27;;
     els.pressure.style.display = mode === &#x27;pressure&#x27; ? &#x27;block&#x27; : &#x27;none&#x27;;
     els.displacement.style.display = mode === &#x27;displacement&#x27; ? &#x27;block&#x27; : &#x27;none&#x27;;
+    els.standingWave.style.display = mode === &#x27;wave&#x27; ? &#x27;block&#x27; : &#x27;none&#x27;;
 
     root.querySelectorAll(&#x27;.sl-mode&#x27;).forEach(button =&gt; {
       const selected = button.dataset.mode === mode;
@@ -2257,52 +2654,136 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
   }
 
-  async function toggleSound() {
-    try {
-      if (!audioContext) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContextClass) throw new Error(&#x27;Web Audio API unavailable&#x27;);
-        audioContext = new AudioContextClass();
-        oscillator = audioContext.createOscillator();
-        gainNode = audioContext.createGain();
-        oscillator.type = &#x27;sine&#x27;;
-        gainNode.gain.value = 0;
-        oscillator.connect(gainNode).connect(audioContext.destination);
-        oscillator.start();
-      }
+  function createAudioGraph() {
+    if (audioContext) return;
 
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) throw new Error(&#x27;Web Audio API unavailable&#x27;);
+
+    try {
+      audioContext = new AudioContextClass({ latencyHint: &#x27;interactive&#x27; });
+    } catch (error) {
+      audioContext = new AudioContextClass();
+    }
+
+    oscillator = audioContext.createOscillator();
+    gainNode = audioContext.createGain();
+    oscillator.type = &#x27;sine&#x27;;
+    oscillator.frequency.value = state.frequency;
+    gainNode.gain.value = 0;
+    oscillator.connect(gainNode).connect(audioContext.destination);
+    oscillator.start(audioContext.currentTime);
+  }
+
+  async function unlockAudio() {
+    createAudioGraph();
+
+    if (audioContext.state !== &#x27;running&#x27;) {
       await audioContext.resume();
-      state.soundOn = !state.soundOn;
+    }
+
+    /* A one-sample silent source helps iOS/iPadOS unlock Web Audio
+       during the same direct button gesture. */
+    const unlockBuffer = audioContext.createBuffer(1, 1, audioContext.sampleRate);
+    const unlockSource = audioContext.createBufferSource();
+    unlockSource.buffer = unlockBuffer;
+    unlockSource.connect(audioContext.destination);
+    unlockSource.start(audioContext.currentTime);
+
+    if (audioContext.state !== &#x27;running&#x27;) {
+      throw new Error(&#x27;AudioContext could not start&#x27;);
+    }
+  }
+
+  async function toggleSound() {
+    els.soundButton.disabled = true;
+
+    try {
+      if (state.soundOn &amp;&amp; audioContext?.state === &#x27;running&#x27;) {
+        state.soundOn = false;
+      } else {
+        await unlockAudio();
+        state.soundOn = true;
+      }
       audioError = false;
       updateAudio();
     } catch (error) {
       audioError = true;
       state.soundOn = false;
-      els.soundState.textContent = &#x27;พรีวิวนี้ไม่อนุญาตให้เล่นเสียง&#x27;;
+      els.soundState.textContent = t(&#x27;soundError&#x27;);
       els.soundStateWrap.classList.remove(&#x27;is-on&#x27;);
+    } finally {
+      els.soundButton.disabled = false;
     }
   }
 
   function updateAudio() {
     if (oscillator &amp;&amp; audioContext) {
       oscillator.frequency.setTargetAtTime(state.frequency, audioContext.currentTime, 0.015);
-      const targetGain = state.soundOn ? 0.004 + 0.055 * state.amplitude : 0;
-      gainNode.gain.setTargetAtTime(targetGain, audioContext.currentTime, 0.025);
+      const targetGain = state.soundOn ? 0.025 + 0.105 * Math.pow(state.amplitude, 0.55) : 0;
+      gainNode.gain.cancelScheduledValues(audioContext.currentTime);
+      gainNode.gain.setTargetAtTime(targetGain, audioContext.currentTime, 0.02);
     }
 
     els.soundButton.setAttribute(&#x27;aria-pressed&#x27;, String(state.soundOn));
-    els.soundButton.querySelector(&#x27;span&#x27;).textContent = state.soundOn ? &#x27;หยุดเสียง&#x27; : &#x27;เริ่มเสียง&#x27;;
-    if (!audioError) {
+    els.soundButton.querySelector(&#x27;span&#x27;).textContent = state.soundOn ? t(&#x27;soundStop&#x27;) : t(&#x27;soundStart&#x27;);
+    if (audioError) {
+      els.soundState.textContent = t(&#x27;soundError&#x27;);
+      els.soundStateWrap.classList.remove(&#x27;is-on&#x27;);
+    } else {
       els.soundState.textContent = state.soundOn
-        ? `กำลังเล่น ${state.frequency.toFixed(0)} Hz · ความดังสัมพัทธ์ ${state.amplitude.toFixed(3)}`
-        : &#x27;เสียงปิดอยู่&#x27;;
+        ? t(&#x27;soundPlaying&#x27;, state.frequency.toFixed(0), state.amplitude.toFixed(3))
+        : t(&#x27;soundOff&#x27;);
       els.soundStateWrap.classList.toggle(&#x27;is-on&#x27;, state.soundOn);
     }
   }
 
   els.frequencyRange.addEventListener(&#x27;input&#x27;, event =&gt; applyValue(&#x27;frequency&#x27;, event.target.value));
   els.temperatureRange.addEventListener(&#x27;input&#x27;, event =&gt; applyValue(&#x27;temperature&#x27;, event.target.value));
-  els.lengthRange.addEventListener(&#x27;input&#x27;, event =&gt; applyValue(&#x27;length&#x27;, event.target.value));
+
+  els.waterAdjustButtons.forEach(button =&gt; {
+    button.addEventListener(&#x27;click&#x27;, () =&gt; {
+      adjustWaterLength(Number(button.dataset.lengthDelta));
+    });
+  });
+
+  els.waterLine.addEventListener(&#x27;pointerdown&#x27;, event =&gt; {
+    if (event.pointerType === &#x27;mouse&#x27; &amp;&amp; event.button !== 0) return;
+    event.preventDefault();
+    activeWaterPointer = event.pointerId;
+    els.waterLine.focus({ preventScroll: true });
+    els.waterLine.classList.add(&#x27;is-dragging&#x27;);
+    els.waterLine.setPointerCapture?.(event.pointerId);
+    setLengthFromWaterPosition(event.clientY);
+  });
+
+  els.waterLine.addEventListener(&#x27;pointermove&#x27;, event =&gt; {
+    if (event.pointerId !== activeWaterPointer) return;
+    event.preventDefault();
+    setLengthFromWaterPosition(event.clientY);
+  });
+
+  els.waterLine.addEventListener(&#x27;pointerup&#x27;, finishWaterDrag);
+  els.waterLine.addEventListener(&#x27;pointercancel&#x27;, finishWaterDrag);
+  els.waterLine.addEventListener(&#x27;lostpointercapture&#x27;, () =&gt; {
+    activeWaterPointer = null;
+    els.waterLine.classList.remove(&#x27;is-dragging&#x27;);
+  });
+
+  els.waterLine.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+    const keyboardActions = {
+      ArrowUp: () =&gt; adjustWaterLength(-0.001),
+      ArrowDown: () =&gt; adjustWaterLength(0.001),
+      PageUp: () =&gt; adjustWaterLength(-0.01),
+      PageDown: () =&gt; adjustWaterLength(0.01),
+      Home: () =&gt; applyValue(&#x27;length&#x27;, limits.length[0], true),
+      End: () =&gt; applyValue(&#x27;length&#x27;, limits.length[1], true)
+    };
+    const action = keyboardActions[event.key];
+    if (!action) return;
+    event.preventDefault();
+    action();
+  });
 
   [
     [&#x27;frequency&#x27;, els.frequencyInput],
@@ -2332,6 +2813,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     button.addEventListener(&#x27;click&#x27;, () =&gt; setMode(button.dataset.mode));
   });
 
+  els.languageButtons.forEach(button =&gt; {
+    button.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(button.dataset.language));
+  });
+
   els.soundButton.addEventListener(&#x27;click&#x27;, toggleSound);
   els.reset.addEventListener(&#x27;click&#x27;, () =&gt; {
     state.frequency = 200;
@@ -2345,6 +2830,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     updatePhysics();
   });
 
+  applyLanguage(&#x27;th&#x27;, false);
   syncControls();
   setMode(&#x27;particles&#x27;);
   updatePhysics();
