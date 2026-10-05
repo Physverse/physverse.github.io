@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>บีตส์ของเสียง | Beats in Sound</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--card:#fff;--ink:#14213d;--mute:#5b6b82;--line:#d5dde8;--grid:#e3e9f1;--c1:#0b8a8f;--c2:#d9731f;--cs:#3b2d9c;--ce:#c62f4a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1522;--card:#17202f;--ink:#e8eef7;--mute:#97a6bd;--line:#2a3750;--grid:#222d42;--c1:#35c4c9;--c2:#ffa04d;--cs:#a99bff;--ce:#ff6b86}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif}
+header{max-width:1200px;margin:0 auto;padding:20px 16px 8px;display:flex;gap:16px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:1.7rem;line-height:1.25}
+header p{margin:2px 0 0;color:var(--mute)}
+.lang button{padding:6px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.lang button:first-child{border-radius:8px 0 0 8px}.lang button:last-child{border-radius:0 8px 8px 0;border-left:0}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+main{max-width:1200px;margin:0 auto;padding:8px 16px 32px;display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:16px}
+@media(max-width:860px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.col{display:flex;flex-direction:column;gap:12px}
+canvas{width:100%;display:block}
+#sc{height:230px}#gc{height:480px}
+@media(max-width:560px){#gc{height:420px}}
+.spk{border-left:5px solid var(--c);padding-left:12px}
+.row{display:flex;align-items:center;gap:10px;justify-content:space-between;margin:6px 0}
+.row b{color:var(--c)}
+input[type=range]{flex:1;min-width:0;accent-color:var(--c)}
+.num{display:flex;align-items:center;gap:4px}
+.num input{width:78px;padding:4px 6px;font:inherit;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.fine{justify-content:flex-start}
+button.b{padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer;font:inherit}
+.sw{display:flex;gap:6px;align-items:center;cursor:pointer;font-size:.92rem}
+#play{width:100%;padding:11px;font:600 1rem inherit;font-family:inherit;border:0;border-radius:10px;background:var(--cs);color:#fff;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+button[data-s][aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#play[aria-pressed=true]{background:var(--ce)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--cs);outline-offset:2px}
+.ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px;font-size:.92rem}
+.ctl input[type=range]{min-width:120px}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+@media(max-width:560px){.kpi{grid-template-columns:1fr}}
+.kpi div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:.9rem;color:var(--mute)}
+.kpi strong{display:block;color:var(--ink);font-size:1.15rem}
+#hint{margin:10px 0 0;padding:8px 12px;border-left:4px solid var(--cs);background:var(--bg);border-radius:0 8px 8px 0;font-size:.95rem}
+.theory{max-width:1200px;margin:0 auto 40px;padding:0 16px}
+.theory .card{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px}
+@media(max-width:860px){.theory .card{grid-template-columns:1fr}}
+h2{font-size:1.15rem;margin:4px 0}
+.eq{font-family:"STIX Two Text",Georgia,serif;font-size:1.1rem;background:var(--bg);border-radius:8px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.theory ol{padding-left:20px;margin:6px 0}
+.note{color:var(--mute);font-size:.9rem}
+.c1{color:var(--c1)}.c2{color:var(--c2)}.cs{color:var(--cs)}.ce{color:var(--ce)}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1 data-t="title"></h1>
+    <p data-t="sub"></p>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="lt" aria-pressed="true">ไทย</button><button id="le" aria-pressed="false">English</button>
+  </div>
+</header>
+
+<main>
+  <section class="col" aria-label="Sources">
+    <div class="card"><canvas id="sc" role="img" aria-label="Two speakers emitting sound waves toward a listener"></canvas></div>
+    <div class="card" id="spkBox"></div>
+    <div class="card">
+      <button id="play" aria-pressed="false"></button>
+      <div class="ctl"><label for="vol" data-t="vol"></label><input type="range" id="vol" min="0" max="100" value="35"></div>
+      <div class="note" data-t="warn" style="margin-top:6px"></div>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Graph">
+    <canvas id="gc" role="img" aria-label="Graphs of the two waves and their superposition"></canvas>
+    <div class="ctl">
+      <label for="win" data-t="win"></label><input type="range" id="win" min="0" max="100" value="77">
+      <span id="winv"></span>
+      <label class="sw"><input type="checkbox" id="aw" checked><span data-t="autoWin"></span></label>
+    </div>
+    <div class="ctl"><label for="t0s" data-t="t0"></label><input type="range" id="t0s" min="0" max="1000" value="0"><button class="b" id="sw"></button></div>
+    <div class="ctl"><span data-t="spd"></span><span id="spdb"><button class="b" data-s="1">1×</button> <button class="b" data-s="0.5">0.5×</button> <button class="b" data-s="0.25">0.25×</button> <button class="b" data-s="0.1">0.1×</button> </span><span id="sync" class="note"></span></div>
+    <div class="kpi">
+      <div><span data-t="kb"></span><strong id="kb"></strong></div>
+      <div><span data-t="kt"></span><strong id="kt"></strong></div>
+      <div><span data-t="kf"></span><strong id="kf"></strong></div>
+    </div>
+    <p id="hint"></p>
+  </section>
+</main>
+
+<section class="theory"><div class="card">
+  <div>
+    <h2 data-t="h1"></h2>
+    <p data-t="p1"></p>
+    <div class="eq"><i>y</i><sub>1</sub> = <i>A</i> cos(2π<i>f</i><sub>1</sub><i>t</i>) &nbsp;,&nbsp; <i>y</i><sub>2</sub> = <i>A</i> cos(2π<i>f</i><sub>2</sub><i>t</i>)</div>
+    <div class="eq"><i>y</i> = <i>y</i><sub>1</sub> + <i>y</i><sub>2</sub> = <span class="ce">2<i>A</i> cos(2π·<span style="font-size:1.05em">(<i>f</i><sub>1</sub>−<i>f</i><sub>2</sub>)/2</span>·<i>t</i>)</span> · <span class="cs">cos(2π·<span style="font-size:1.05em">(<i>f</i><sub>1</sub>+<i>f</i><sub>2</sub>)/2</span>·<i>t</i>)</span></div>
+    <p data-t="p2"></p>
+    <div class="eq"><i>f</i><sub>b</sub> = |<i>f</i><sub>1</sub> − <i>f</i><sub>2</sub>| &nbsp;,&nbsp; <i>T</i><sub>b</sub> = 1/<i>f</i><sub>b</sub> &nbsp;,&nbsp; <i>f</i><sub>avg</sub> = (<i>f</i><sub>1</sub> + <i>f</i><sub>2</sub>)/2</div>
+  </div>
+  <div>
+    <h2 data-t="h2"></h2>
+    <ol data-t="try"></ol>
+    <h2 data-t="h3"></h2>
+    <p class="note" data-t="assume"></p>
+  </div>
+</div></section>
+
+<script>
+const PI=Math.PI,$=id=>document.getElementById(id);
+const T={
+th:{
+title:"บีตส์ของเสียง",sub:"การซ้อนทับของคลื่นเสียงสองขบวนที่มีความถี่ต่างกันเล็กน้อย",
+spk1:"ลำโพง 1",spk2:"ลำโพง 2",emit:"ส่งเสียง",listener:"ผู้ฟัง",play:"▶ เปิดเสียง",stop:"■ หยุดเสียง",vol:"ความดัง",
+warn:"โปรดลดความดังก่อนกดเปิดเสียง",
+g1:"คลื่นจากลำโพง 1:  y₁ = A cos(2πf₁t)",g2:"คลื่นจากลำโพง 2:  y₂ = A cos(2πf₂t)",gs:"คลื่นรวม:  y = y₁ + y₂",env:"เส้นประ = ซองคลื่น ±2A|cos(πΔf·t)|",
+tax:"เวลา t",zoom:"ภาพขยาย",y1:"y₁ = A cos(2πf₁t)",y2:"y₂ = A cos(2πf₂t)",gB:"คลื่นรวม y = y₁ + y₂ (ช่วงเวลาเดียวกับภาพขยายด้านบน)",gC:"คลื่นรวมในช่วงเวลายาว: เห็นบีตส์ (แถบแดง = ตำแหน่งภาพขยาย)",t0:"ตำแหน่งภาพขยาย t₀",pause:"⏸ หยุด",resume:"▶ เล่นต่อ",spd:"ความเร็วการเลื่อนภาพ (เมื่อไม่เปิดเสียง)",sync:"● ภาพตรงกับเสียงที่ได้ยิน (เวลาจริง)",peak:"เส้นจุด = ดังสูงสุด",autoWin:"อัตโนมัติ (แสดง 3 คาบบีตส์)",win:"ช่วงเวลาที่แสดง",viewWave:"ดูรูปคลื่น",viewBeats:"ดูบีตส์",
+kb:"ความถี่บีตส์ f<sub>b</sub> = |f₁ − f₂|",kt:"คาบบีตส์ T<sub>b</sub> = 1/f<sub>b</sub>",kf:"ความถี่เฉลี่ย f<sub>avg</sub> = (f₁+f₂)/2",
+hSame:"ความถี่เท่ากัน (f₁ = f₂) จึงไม่เกิดบีตส์ คลื่นรวมมีแอมพลิจูด 2A คงที่",
+hOff:"ลำโพงเปิดอยู่เพียงตัวเดียว จึงไม่มีการซ้อนทับและไม่เกิดบีตส์",
+hBeat:"เสียงดังสูงสุดประมาณ {n} ครั้งต่อวินาที (ทุก ๆ {t}) ระดับเสียงที่ได้ยินใกล้เคียง {f}",
+hFar:"ความถี่ต่างกันมาก (f<sub>b</sub> เกินประมาณ 15 Hz) หูจะไม่รับรู้เป็นจังหวะดังเบา แต่ได้ยินเป็นเสียงหยาบหรือสองระดับเสียง",
+h1:"ที่มาของบีตส์",
+p1:"เมื่อคลื่นเสียงสองขบวนที่มีแอมพลิจูด A เท่ากันและความถี่ f₁, f₂ ต่างกันเล็กน้อยเดินทางมาถึงผู้ฟัง การกระจัดรวมเท่ากับผลบวกของคลื่นทั้งสอง (หลักการซ้อนทับ) ใช้ cos a + cos b = 2 cos((a−b)/2) cos((a+b)/2) จะได้",
+p2:"พจน์สีแดงคือแอมพลิจูดที่เปลี่ยนช้า ๆ (ซองคลื่น) ส่วนพจน์สีม่วงคือคลื่นที่ความถี่เฉลี่ย f<sub>avg</sub> ซึ่งกำหนดระดับเสียงที่ได้ยิน ความดังสูงสุดเมื่อ |cos(π(f₁−f₂)t)| = 1 คือที่ t = 0, 1/f<sub>b</sub>, 2/f<sub>b</sub>, … และเกือบเงียบเมื่อ cos(π(f₁−f₂)t) = 0 คือที่ t = 1/(2f<sub>b</sub>), 3/(2f<sub>b</sub>), … จึงได้ยินเสียงดัง–เบาซ้ำทุกคาบ T<sub>b</sub> = 1/f<sub>b</sub> (หมายเหตุ: ตัว cos(π(f₁−f₂)t) มีความถี่ |f₁−f₂|/2 แต่ความดังขึ้นลงตามค่าสัมบูรณ์ของมัน จึงเกิดบีตส์ |f₁−f₂| ครั้งต่อวินาที) ความถี่บีตส์และคาบบีตส์คือ",
+h2:"ลองทำดู",
+try:"<li>ตั้ง f₁ = 440 Hz และ f₂ = 444 Hz แล้วกดเปิดเสียง จะได้ยินเสียงดัง–เบา 4 ครั้งต่อวินาที</li><li>เพิ่มหรือลดความถี่ของลำโพงตัวใดตัวหนึ่ง สังเกตว่าความถี่บีตส์และรูปซองคลื่นเปลี่ยนไปทันที</li><li>ทำให้ f₁ = f₂ บีตส์จะหายไป</li><li>ปิด “ส่งเสียง” ของลำโพงหนึ่งตัว เพื่อฟังและดูทีละคลื่น</li><li>แถบสีแดงในกราฟล่างเลื่อนไปตามเวลา เมื่อเปิดเสียงจะเลื่อนตรงกับเสียงที่ได้ยินจริง ถ้ายังไม่เปิดเสียงเลือกความเร็วให้ช้าลงได้ กด “หยุด” เมื่อต้องการให้นักเรียนดูตอนคลื่นเสริมหรือหักล้างกัน หรือลากแถบ t₀ เอง</li>",
+h3:"ข้อตกลงของแบบจำลอง",
+assume:"แอมพลิจูดของคลื่นทั้งสองเท่ากัน (A) และเฟสเท่ากันที่ t = 0 เสียงถูกสร้างจากคลื่นโคไซน์ y = A cos(2πft) ตรงตามสมการในกราฟ เมื่อเปิดเสียง แกนเวลาของกราฟจะเดินตรงกับเวลาจริงของเสียงที่ได้ยิน (เมื่อปรับความถี่ ระบบจะเริ่มคลื่นใหม่เพื่อให้เฟสตรงกันอีกครั้งที่ t = 0) กราฟแสดงการกระจัดของอากาศที่ตำแหน่งผู้ฟัง ผลต่างเฟสคงที่จากระยะทางที่ต่างกันไม่เปลี่ยนความถี่บีตส์ โดยทั่วไปหูคนรับรู้บีตส์ได้ชัดเมื่อ f<sub>b</sub> ไม่เกินประมาณ 15 Hz แกนตั้งมีหน่วยเป็น A"
+},
+en:{
+title:"Beats in Sound",sub:"Superposition of two sound waves with slightly different frequencies",
+spk1:"Speaker 1",spk2:"Speaker 2",emit:"Emitting",listener:"Listener",play:"▶ Play sound",stop:"■ Stop sound",vol:"Volume",
+warn:"Turn the volume down before you press play.",
+g1:"Wave from speaker 1:  y₁ = A cos(2πf₁t)",g2:"Wave from speaker 2:  y₂ = A cos(2πf₂t)",gs:"Resultant wave:  y = y₁ + y₂",env:"dashed = envelope ±2A|cos(πΔf·t)|",
+tax:"time t",zoom:"Close-up",y1:"y₁ = A cos(2πf₁t)",y2:"y₂ = A cos(2πf₂t)",gB:"Resultant y = y₁ + y₂ (same time span as the close-up above)",gC:"Resultant over a long time span: beats appear (red band = close-up position)",t0:"Close-up position t₀",pause:"⏸ Pause",resume:"▶ Resume",spd:"Sweep speed (sound off)",sync:"● Graph is in step with the sound (real time)",peak:"dotted = loudest",autoWin:"Auto (show 3 beat periods)",win:"Time window",viewWave:"Show waveform",viewBeats:"Show beats",
+kb:"Beat frequency f<sub>b</sub> = |f₁ − f₂|",kt:"Beat period T<sub>b</sub> = 1/f<sub>b</sub>",kf:"Mean frequency f<sub>avg</sub> = (f₁+f₂)/2",
+hSame:"The frequencies are equal (f₁ = f₂), so there are no beats. The resultant has a constant amplitude of 2A.",
+hOff:"Only one speaker is emitting, so there is no superposition and no beats.",
+hBeat:"The sound reaches maximum loudness about {n} times per second (every {t}). The pitch you hear is close to {f}.",
+hFar:"The frequencies are far apart (f<sub>b</sub> above about 15 Hz). The ear no longer hears loud–soft pulses; it hears a rough sound or two separate pitches.",
+h1:"Where beats come from",
+p1:"When two sound waves of equal amplitude A and slightly different frequencies f₁ and f₂ reach a listener, the net displacement is the sum of the two (principle of superposition). Using cos a + cos b = 2 cos((a−b)/2) cos((a+b)/2) gives",
+p2:"The red factor is a slowly varying amplitude (the envelope). The purple factor is a wave at the mean frequency f<sub>avg</sub>, which sets the pitch you hear. The sound is loudest when |cos(π(f₁−f₂)t)| = 1, at t = 0, 1/f<sub>b</sub>, 2/f<sub>b</sub>, …, and nearly silent when cos(π(f₁−f₂)t) = 0, at t = 1/(2f<sub>b</sub>), 3/(2f<sub>b</sub>), …, so it swells and fades once per beat period T<sub>b</sub> = 1/f<sub>b</sub>. (Note: the factor cos(π(f₁−f₂)t) itself has frequency |f₁−f₂|/2, but loudness follows its absolute value, so beats occur |f₁−f₂| times per second.) The beat frequency and beat period are",
+h2:"Try this",
+try:"<li>Set f₁ = 440 Hz and f₂ = 444 Hz, then press play. You hear the sound swell and fade 4 times per second.</li><li>Raise or lower the frequency of either speaker. The beat frequency and the envelope change immediately.</li><li>Make f₁ = f₂. The beats disappear.</li><li>Switch off “Emitting” on one speaker to hear and see each wave alone.</li><li>The red band in the lower graph moves with time. While the sound plays it moves in step with what you hear. With the sound off you can choose a slower speed. Press “Pause” to study a moment where the waves add up or cancel, or drag t₀ yourself.</li>",
+h3:"Model assumptions",
+assume:"Both waves have the same amplitude (A) and the same phase at t = 0. The sound is generated as cosine waves y = A cos(2πft), exactly as in the graphs. While the sound plays, the graph time axis runs in step with the sound you hear (when you change a frequency, the waves restart so they are in phase again at t = 0). The graphs show the displacement of the air at the listener's position. A constant phase difference from unequal distances does not change the beat frequency. People hear beats clearly when f<sub>b</sub> is no more than about 15 Hz. The vertical axis is in units of A."
+}};
+const S={f1:440,f2:444,on1:true,on2:true,win:1,play:false,lang:'th',tc:0,sweep:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,spd:0.25,autoWin:true};
+const fmt=v=>String(+v.toFixed(2));
+let dirty=true;
+
+// ---- speaker cards
+$('spkBox').innerHTML=[1,2].map(i=>`<div class="spk" style="--c:var(--c${i});${i==1?'margin-bottom:14px':''}">
+<div class="row"><b data-t="spk${i}"></b><label class="sw"><input type="checkbox" id="on${i}" checked><span data-t="emit"></span></label></div>
+<div class="row"><input type="range" id="r${i}" min="100" max="1000" step="0.5" aria-label="f${i}"><div class="num"><input type="number" id="n${i}" min="20" max="2000" step="0.1" aria-label="f${i} Hz"><span>Hz</span></div></div>
+<div class="row fine">${[-1,-0.1,0.1,1].map(d=>`<button class="b" data-i="${i}" data-d="${d}">${d>0?'+':'−'}${Math.abs(d)}</button>`).join('')}</div></div>`).join('');
+
+function setF(i,v){
+  v=Math.min(2000,Math.max(20,Math.round(v*10)/10));S['f'+i]=v;
+  $('r'+i).value=v;$('n'+i).value=fmt(v);
+  if(S.play){V.o[i-1].frequency.setTargetAtTime(v,AC.currentTime,0.01);resync()}
+  update();
+}
+[1,2].forEach(i=>{
+  $('r'+i).oninput=e=>setF(i,+e.target.value);
+  $('n'+i).onchange=e=>setF(i,+e.target.value||S['f'+i]);
+  $('on'+i).onchange=e=>{S['on'+i]=e.target.checked;if(S.play)V.g[i-1].gain.setTargetAtTime(e.target.checked?.5:0,AC.currentTime,0.02);update()};
+});
+document.querySelectorAll('button[data-d]').forEach(b=>b.onclick=()=>setF(+b.dataset.i,S['f'+b.dataset.i]+ +b.dataset.d));
+
+// ---- audio (cosine waves, so the sound is exactly y = A cos 2πft)
+let AC,V,mg,COS,tStart=0,rt;
+const vol=()=>$('vol').value/100*0.6,lat=()=>(AC.outputLatency||0)+(AC.baseLatency||0);
+function voice(when){
+  const bus=AC.createGain();bus.gain.setValueAtTime(0,AC.currentTime);bus.gain.setValueAtTime(0,when);bus.gain.linearRampToValueAtTime(1,when+0.02);bus.connect(mg);
+  const o=[],g=[];
+  [1,2].forEach(i=>{const os=AC.createOscillator();os.setPeriodicWave(COS);os.frequency.value=S['f'+i];
+    const gn=AC.createGain();gn.gain.value=S['on'+i]?.5:0;os.connect(gn);gn.connect(bus);os.start(when);o.push(os);g.push(gn)});
+  return{o,g,bus,when};
+}
+function kill(v,t){v.bus.gain.cancelScheduledValues(t);v.bus.gain.setValueAtTime(v.bus.gain.value,t);v.bus.gain.linearRampToValueAtTime(0,t+0.03);v.o.forEach(os=>os.stop(t+0.06))}
+function resync(){clearTimeout(rt);rt=setTimeout(()=>{if(!S.play)return;const now=AC.currentTime,old=V;V=voice(now+0.03);kill(old,now);tStart=V.when;S.tc=0},90)}
+function toggle(){
+  if(!S.play){
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();
+    COS=COS||AC.createPeriodicWave(new Float32Array([0,1]),new Float32Array([0,0]));
+    mg=AC.createGain();mg.gain.value=0;mg.connect(AC.destination);
+    V=voice(AC.currentTime+0.05);tStart=V.when;mg.gain.setTargetAtTime(vol(),AC.currentTime,0.03);
+    S.play=true;S.sweep=true;S.tc=0;
+  }else{
+    clearTimeout(rt);mg.gain.setTargetAtTime(0,AC.currentTime,0.03);
+    const v=V,m=mg;setTimeout(()=>{v.o.forEach(o=>{try{o.stop()}catch(e){}});m.disconnect()},250);S.play=false;
+  }
+  $('play').setAttribute('aria-pressed',S.play);label();swLabel();dirty=true;
+}
+$('play').onclick=toggle;
+$('vol').oninput=()=>{if(S.play)mg.gain.setTargetAtTime(vol(),AC.currentTime,0.02)};
+
+// ---- time window
+const winOf=v=>0.01*Math.pow(400,v/100);
+function setWin(w){S.win=Math.min(4,Math.max(0.01,w));$('win').value=Math.log(S.win/0.01)/Math.log(400)*100;
+  $('winv').textContent=S.win<0.3?fmt(S.win*1000)+' ms':fmt(S.win)+' s';dirty=true}
+$('win').oninput=e=>{S.autoWin=false;$('aw').checked=false;setWin(winOf(+e.target.value))};
+$('aw').onchange=e=>{S.autoWin=e.target.checked;update()};
+$('t0s').oninput=e=>{S.tc=Math.floor(S.tc/S.win)*S.win+e.target.value/1000*S.win;S.sweep=false;swLabel();dirty=true};
+function swLabel(){$('sw').textContent=T[S.lang][S.sweep?'pause':'resume'];
+  document.querySelectorAll('[data-s]').forEach(b=>{b.setAttribute('aria-pressed',+b.dataset.s===S.spd);b.disabled=S.play});
+  $('sync').textContent=S.play&&S.sweep?T[S.lang].sync:''}
+$('sw').onclick=()=>{S.sweep=!S.sweep;swLabel()};
+document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{S.spd=+b.dataset.s;swLabel()});
+function label(){$('play').textContent=T[S.lang][S.play?'stop':'play']}
+function update(){
+  if(S.autoWin){const dd=Math.abs(S.f1-S.f2);setWin(dd>0?Math.min(4,Math.max(0.1,3/dd)):1)}
+  const t=T[S.lang],d=Math.abs(S.f1-S.f2),m=(S.f1+S.f2)/2;
+  $('kb').textContent=fmt(d)+' Hz';$('kt').textContent=d>0?(1/d<1?fmt(1000/d)+' ms':fmt(1/d)+' s'):'∞';$('kf').textContent=fmt(m)+' Hz';
+  let h;
+  if(!S.on1||!S.on2)h=t.hOff;else if(d==0)h=t.hSame;else if(d>15)h=t.hFar;
+  else h=t.hBeat.replace('{n}',fmt(d)).replace('{t}',1/d<1?fmt(1000/d)+' ms':fmt(1/d)+' s').replace('{f}',fmt(m)+' Hz');
+  $('hint').innerHTML=h;dirty=true;
+}
+function apply(){
+  const t=T[S.lang];document.documentElement.lang=S.lang;document.title=t.title+' | '+T[S.lang==='th'?'en':'th'].title;
+  document.querySelectorAll('[data-t]').forEach(e=>e.innerHTML=t[e.dataset.t]);
+  $('lt').setAttribute('aria-pressed',S.lang==='th');$('le').setAttribute('aria-pressed',S.lang==='en');
+  label();swLabel();update();
+}
+$('lt').onclick=()=>{S.lang='th';apply()};$('le').onclick=()=>{S.lang='en';apply()};
+
+// ---- drawing helpers
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function fit(c){const r=c.getBoundingClientRect(),d=window.devicePixelRatio||1,W=Math.round(r.width*d),H=Math.round(r.height*d);
+  if(c.width!==W||c.height!==H){c.width=W;c.height=H;dirty=true}
+  const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{x,w:r.width,h:r.height}}
+const nice=v=>{const p=Math.pow(10,Math.floor(Math.log10(v))),m=v/p;return(m<1.5?1:m<3.5?2:m<7.5?5:10)*p};
+
+function drawGraph(){
+  const{x,w,h}=fit($('gc'));x.clearRect(0,0,w,h);
+  const L=52,R=12,pw=Math.floor(w-L-R),avail=h-130,ph1=avail*0.27,ph3=avail-2*ph1;
+  const f1=S.f1,f2=S.f2,a1=S.on1?1:0,a2=S.on2?1:0,d=Math.abs(f1-f2),fm=(f1+f2)/2,fmax=Math.max(f1,f2),win=S.win,tc=S.tc,tw0=Math.floor(tc/win+1e-12)*win,wc=6/fm;
+  const c1=css('--c1'),c2=css('--c2'),cs=css('--cs'),ink=css('--ink'),mute=css('--mute'),grid=css('--grid'),ce=css('--ce'),t=T[S.lang];
+  const F1=s=>a1*Math.cos(2*PI*f1*s),F2=s=>a2*Math.cos(2*PI*f2*s),FS=s=>F1(s)+F2(s);
+  const FONT='12px "IBM Plex Sans Thai",sans-serif',BOLD='600 12.5px "IBM Plex Sans Thai",sans-serif';
+  const tr=(fn,color,y0,ph,ts,span)=>{const sc=ph/2/2.15,mid=y0+ph/2;x.strokeStyle=color;x.lineWidth=1.5;x.beginPath();
+    for(let p=0;p<pw;p++){const s0=ts+p/pw*span,s1=ts+(p+1)/pw*span,n=Math.min(120,Math.ceil(fmax*(s1-s0)*8)+2);let mn=1e9,mx=-1e9;
+      for(let k=0;k<=n;k++){const v=fn(s0+(s1-s0)*k/n);if(v<mn)mn=v;if(v>mx)mx=v}
+      const ya=mid-mx*sc,yb=mid-mn*sc;x.moveTo(L+p+.5,ya);x.lineTo(L+p+.5,Math.max(yb,ya+1))}x.stroke()};
+  const fr=(y0,ph,ts,span,axis)=>{const sc=ph/2/2.15,mid=y0+ph/2,step=nice(span/5),ms=span<0.3;
+    x.font=FONT;x.lineWidth=1;x.strokeStyle=grid;x.fillStyle=mute;x.textAlign='right';x.textBaseline='middle';
+    [-2,-1,0,1,2].forEach(k=>{const y=mid-k*sc;x.beginPath();x.moveTo(L,y);x.lineTo(L+pw,y);x.stroke();x.fillText(k==0?'0':(k<0?'−':'')+(Math.abs(k)==1?'':Math.abs(k))+'A',L-6,y)});
+    x.textAlign='center';x.textBaseline='top';
+    for(let s=Math.ceil(ts/step-1e-9)*step;s<=ts+span+1e-12;s+=step){const px=L+(s-ts)/span*pw;x.strokeStyle=grid;x.beginPath();x.moveTo(px,y0);x.lineTo(px,y0+ph);x.stroke();
+      if(axis){x.fillStyle=mute;x.fillText(String(parseFloat((ms?s*1000:s).toFixed(3)))+(ms?' ms':' s'),px,y0+ph+4)}}
+    x.strokeStyle=mute;x.strokeRect(L+.5,y0+.5,pw,ph);
+    if(axis){x.fillStyle=ink;x.textAlign='right';x.textBaseline='top';x.fillText(t.tax,L-6,y0+ph+4)}};
+  const ttl=(parts,y)=>{x.font=BOLD;x.textAlign='left';x.textBaseline='top';let px=L;parts.forEach(([s,c])=>{x.fillStyle=c;x.fillText(s,px,y);px+=x.measureText(s).width})};
+  let y=4;
+  ttl([[t.zoom+':   ',ink],[t.y1+'    ',c1],[t.y2,c2]],y);y+=16;
+  fr(y,ph1,tc,wc,false);tr(F1,c1,y,ph1,tc,wc);tr(F2,c2,y,ph1,tc,wc);y+=ph1+8;
+  ttl([[t.gB,cs]],y);y+=16;
+  fr(y,ph1,tc,wc,true);tr(FS,cs,y,ph1,tc,wc);y+=ph1+24;
+  ttl([[t.gC,cs]],y);y+=16;
+  const env=a1&&a2&&d>0;
+  if(env){x.strokeStyle=ce;x.lineWidth=1.8;x.setLineDash([6,4]);x.beginPath();x.moveTo(L,y+8);x.lineTo(L+26,y+8);x.stroke();
+    x.setLineDash([2,4]);x.lineWidth=1.2;x.beginPath();x.moveTo(L+pw*0.5,y+8);x.lineTo(L+pw*0.5+26,y+8);x.stroke();x.setLineDash([]);
+    x.font=FONT;x.fillStyle=ce;x.textAlign='left';x.textBaseline='top';x.fillText(t.env,L+32,y);x.fillText(t.peak,L+pw*0.5+32,y)}
+  y+=17;
+  const yC=y,sc3=ph3/2/2.15,mid=yC+ph3/2;
+  fr(yC,ph3,tw0,win,true);tr(FS,cs,yC,ph3,tw0,win);
+  x.globalAlpha=.3;x.fillStyle=ce;x.fillRect(L+(tc-tw0)/win*pw-1,yC,Math.max(3,wc/win*pw),ph3);x.globalAlpha=1;
+  if(env){
+    x.strokeStyle=ce;x.lineWidth=1.8;x.setLineDash([6,4]);
+    [1,-1].forEach(sg=>{x.beginPath();for(let p=0;p<=pw;p+=2){const s=tw0+p/pw*win,yy=mid-sg*2*Math.abs(Math.cos(PI*d*s))*sc3;p?x.lineTo(L+p,yy):x.moveTo(L+p,yy)}x.stroke()});
+    x.setLineDash([2,4]);x.lineWidth=1;
+    const k0=Math.ceil(tw0*d-1e-9);
+    if(d*win<=40)for(let k=k0;k/d<=tw0+win+1e-9;k++){const px=L+(k/d-tw0)/win*pw;x.beginPath();x.moveTo(px,yC);x.lineTo(px,yC+ph3);x.stroke()}
+    x.setLineDash([]);
+    if((k0+1)/d<=tw0+win+1e-9){const xs=L+(k0/d-tw0)/win*pw,xe=L+((k0+1)/d-tw0)/win*pw,yy=yC+ph3-9;x.lineWidth=1.5;x.beginPath();x.moveTo(xs,yy);x.lineTo(xe,yy);x.stroke();
+      [[xs,1],[xe,-1]].forEach(([ax,sg])=>{x.beginPath();x.moveTo(ax+sg*6,yy-3.5);x.lineTo(ax,yy);x.lineTo(ax+sg*6,yy+3.5);x.stroke()});
+      x.font=FONT;x.fillStyle=ce;x.textAlign='left';x.textBaseline='bottom';const tw=x.measureText('T').width,sx=(xs+xe)/2-(tw+6)/2;
+      x.fillText('T',sx,yy-2);x.font='9px "IBM Plex Sans Thai",sans-serif';x.fillText('b',sx+tw+1,yy+2)}
+  }
+}
+
+const ph0=[0,0],reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function drawSpk(dt){
+  const{x,w,h}=fit($('sc'));x.clearRect(0,0,w,h);
+  const sx=36,ex=w-40,ey=h/2,ys=[h*0.27,h*0.73],R=ex-sx,t=T[S.lang],mute=css('--mute');
+  for(let i=0;i<2;i++){
+    const c=css('--c'+(i+1)),f=S['f'+(i+1)],on=S['on'+(i+1)],y=ys[i],lam=Math.max(11,13000/f);
+    if(S.play&&on&&!reduced)ph0[i]=(ph0[i]+70*dt)%lam;
+    x.strokeStyle=c;x.lineWidth=3.2;x.lineCap='round';
+    if(on)for(let r=(ph0[i]%lam)+10;r<R;r+=lam){x.globalAlpha=(S.play?1:0.55)*(1-0.6*r/R);
+      const a=Math.atan2(ey-y,ex-sx);x.beginPath();x.arc(sx+10,y,r,a-0.7,a+0.7);x.stroke()}
+    x.globalAlpha=1;x.fillStyle=c;x.beginPath();x.rect(sx-16,y-9,11,18);x.fill();
+    x.beginPath();x.moveTo(sx-5,y-9);x.lineTo(sx+10,y-20);x.lineTo(sx+10,y+20);x.lineTo(sx-5,y+9);x.closePath();x.fill();
+    x.font='600 12.5px "IBM Plex Sans Thai",sans-serif';x.textAlign='left';x.textBaseline='bottom';x.fillText('S'+(i+1)+' · '+fmt(f)+' Hz',sx-16,y-24);
+  }
+  x.fillStyle=css('--ink');x.beginPath();x.arc(ex,ey,6,0,2*PI);x.fill();
+  x.fillStyle=mute;x.textAlign='center';x.textBaseline='top';x.font='12px "IBM Plex Sans Thai",sans-serif';x.fillText(t.listener,ex,ey+10);
+}
+
+let last=0;
+function loop(ts){const dt=Math.min(0.1,(ts-last)/1000||0);last=ts;if(S.sweep){if(S.play)S.tc=Math.max(0,AC.currentTime-tStart-lat());else S.tc+=dt*S.spd;$('t0s').value=(S.tc/S.win-Math.floor(S.tc/S.win))*1000;dirty=true}drawSpk(dt);if(dirty){dirty=false;drawGraph()}requestAnimationFrame(loop)}
+setF(1,440);setF(2,444);setWin(1);apply();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>dirty=true);
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
